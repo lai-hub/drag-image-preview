@@ -191,6 +191,7 @@ export default {
         'margin-left': `${offsetX}px`,
         'margin-top': `${offsetY}px`
       };
+      
       // if (this.mode === Mode.CONTAIN) {
       //   style.maxWidth = style.maxHeight = '100%';
       // }
@@ -217,7 +218,8 @@ export default {
       handler(val) {
         this.imgWidth()
       },
-      deep: true
+      deep: true,
+      immediate: true
     }
   },
   methods: {
@@ -359,10 +361,16 @@ export default {
       transform.enableTransition = enableTransition;
     },
     imgWidth() {
-      const { scale } = this.transform
+      const { scale, deg } = this.transform
       let img = this.$refs['img'][0]
-      this.w = img.clientWidth * scale
-      this.h = img.clientHeight * scale
+      if (deg%180 === 0) {
+        this.w = img.clientWidth * scale
+        this.h = img.clientHeight * scale
+      } else {
+        this.w = img.clientHeight * scale
+        this.h = img.clientWidth * scale
+      }
+      
     }
   },
   mounted() {
@@ -370,7 +378,7 @@ export default {
     // add tabindex then wrapper can be focusable via Javascript
     // focus wrapper so arrow key can't cause inner scroll behavior underneath
     this.$refs['el-image-viewer__wrapper'].focus();
-    this.imgWidth()
+    setTimeout(this.imgWidth,100)
   }
 };
 </script>
@@ -397,6 +405,7 @@ export default {
 }
 .el-image-viewer__img {
   width: 400px;
+  height: auto;
 }
 .el-image-viewer__canvas {
   cursor: move;
