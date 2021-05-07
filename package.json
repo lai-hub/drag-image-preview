@@ -2,12 +2,16 @@
   "name": "drag-image-preview",
   "description": "image drage and preview",
   "version": "1.0.0",
-  "author": "赖丹 <420759357@qq.com>",
+  "author": "laidan <420759357@qq.com>",
   "license": "MIT",
-  "private": true,
+  "private": false,
+  "main": "dist/build.js",
   "scripts": {
     "dev": "cross-env NODE_ENV=development webpack-dev-server --open --hot",
     "build": "cross-env NODE_ENV=production webpack --progress --hide-modules"
+  },
+  "directories": {
+    "dist":"dist"
   },
   "dependencies": {
     "element-ui": "^2.15.1",
