@@ -69,7 +69,7 @@ const Mode = {
 const mousewheelEventName = isFirefox() ? 'DOMMouseScroll' : 'mousewheel';
 
 export default {
-  name: 'dragUnagePreview',
+  name: 'dragImagePreview',
   directives: {
     /*自定义拖拽*/
       drag: {
