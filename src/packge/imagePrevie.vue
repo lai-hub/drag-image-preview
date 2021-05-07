@@ -54,7 +54,7 @@
 <script>
 import { on, off } from 'element-ui/src/utils/dom';
 import { rafThrottle, isFirefox } from 'element-ui/src/utils/util';
-
+import 'element-ui/lib/theme-chalk/index.css';
 const Mode = {
   CONTAIN: {
     name: 'contain',
@@ -69,7 +69,7 @@ const Mode = {
 const mousewheelEventName = isFirefox() ? 'DOMMouseScroll' : 'mousewheel';
 
 export default {
-  name: 'elImageViewer',
+  name: 'dragUnagePreview',
   directives: {
     /*自定义拖拽*/
       drag: {
@@ -208,18 +208,17 @@ export default {
     currentImg(val) {
       this.$nextTick(_ => {
         const $img = this.$refs.img[0];
-        this.imgWidth()
         if (!$img.complete) {
           this.loading = true;
         }
+        this.imgWidth()
       });
     },
     imgStyle:{
       handler(val) {
         this.imgWidth()
       },
-      deep: true,
-      immediate: true
+      deep: true
     }
   },
   methods: {
@@ -382,7 +381,9 @@ export default {
   }
 };
 </script>
+
 <style scoped lang="scss">
+
 .el-image-viewer__wrapper {
   position: fixed;
   min-width: 300px;
@@ -409,5 +410,8 @@ export default {
 }
 .el-image-viewer__canvas {
   cursor: move;
+}
+.el-image-viewer__actions__inner {
+  cursor: pointer;
 }
 </style>
